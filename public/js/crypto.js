@@ -384,17 +384,14 @@ function getTextFromIndexedDB(dbName, storeName, keyText) {
         };
 
         getKeyRequest.onsuccess = (event) => {
+            myButton.style.display = 'none';
+
             if (event.target.result) {
                 const value = event.target.result.text;
                 textArea.value = value;
-
-                setTimeout(() => { // Use setTimeout to ensure UI update
-                    myButton.style.display = 'none';
-                }, 0); // 0ms delay, runs after current event loop cycle
-
             } else {
                 textArea.value = "Key not found.";
-                myButton.style.display = 'block';
+                myButton.style.display = 'block'; // Show the button if the key isn't found
             }
         };
 
